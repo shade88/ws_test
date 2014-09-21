@@ -17,7 +17,18 @@ popup_connection_lost = ->
 # Create one global WebSocketRails javascript client that we can use when needed.
 # This avoids having multiple redundant connections open from different js-scripts.
 window.dispatcher = new WebSocketRails(window.location.host + '/websocket')
+chat=window.dispatcher.subscribe('chat')
+#new_message= (message) ->
+#  chat.trigger('new_message',message)
+#
+chat.bind 'new_message',(message)=>
+  window.dispatcher.trigger 'chat.new_message',message
+
+
+
 
 # Register callbacks on the connection itself, currently they aren't 
 # proganated to the main WebSocketRails class.
 window.dispatcher._conn.on_close = popup_connection_lost
+
+#gsdfgdfgfsdg!!derived_float64

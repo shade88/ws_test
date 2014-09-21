@@ -28,7 +28,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 gem 'thin'
-gem 'websocket-rails', git: 'git://github.com/DanKnox/websocket-rails.git'
+gem 'websocket-rails'#, git: 'git://github.com/DanKnox/websocket-rails.git'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

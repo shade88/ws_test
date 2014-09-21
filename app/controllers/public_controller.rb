@@ -8,14 +8,18 @@ class PublicController < ApplicationController
 
   def index
     #cookies[:messages]=nil
-    @messages= session[:messages]
+    #@messages= session[:messages]
+    @messages=MessageStore.messages
   end
 
   def new_message
     #session[:messages]||=Array.new
     #session[:messages]<<params[:message]
     #@messages= params[:messages]
-    WebsocketRails.dispatcher.trigger 'chat.new_message', {msg_body:params[:message]}
+    WebsocketRails[:chat].trigger(:new_message, {msg_body: params[:message]})
+    #WebsocketRails[:chat].trigger :new_message, '213'
+
+
     redirect_to root_path
   end
 
